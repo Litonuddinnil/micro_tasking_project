@@ -10,7 +10,7 @@ const Contact = () => {
         <Helmet>
         <title>Micro Platform | ContactUs</title>
         </Helmet>
-      <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-2xl">
+      <div className="bg-white shadow-md rounded-2xl p-8 w-full max-w-2xl">
         <h1 className="text-3xl font-bold text-sky-600 text-center mb-6">
           Contact Us
         </h1>

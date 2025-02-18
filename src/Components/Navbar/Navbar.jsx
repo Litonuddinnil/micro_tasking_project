@@ -33,6 +33,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center gap-4">
         <Link to="/" className="hover:text-blue-600">Home</Link>
         <Link to="/about" className="hover:text-blue-600">About</Link>
+        <Link to="/faqs" className="hover:text-blue-600">FAQs</Link>
         {user && user.email ? (
           <>
             <Link to={`/dashboard/${userData?.role?.toLowerCase()}Home`} className="hover:text-blue-600">Dashboard</Link>
@@ -61,7 +62,8 @@ const Navbar = () => {
         <label tabIndex={0} className="btn btn-ghost"><FaBars size={24} /></label>
         <ul tabIndex={0} className={`dropdown-content menu p-2 shadow ${theme === "corporate"? "bg-white" : "bg-[#121212]"}  rounded-lg w-52`}>
           <li><Link to="/" className="hover:text-blue-600">Home</Link></li>
-          <li><Link to="/" className="hover:text-blue-600">About</Link></li>
+          <li><Link to="/about" className="hover:text-blue-600">About</Link></li>
+          <li><Link to="/faqs" className="hover:text-blue-600">FAQs</Link></li>
           {user && user.email ? (
             <>
               <li><Link to={`/dashboard/${userData?.role?.toLowerCase()}Home`} className="hover:text-blue-600">Dashboard</Link></li>

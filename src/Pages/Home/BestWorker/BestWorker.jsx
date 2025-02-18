@@ -13,10 +13,10 @@ const BestWorker = () => {
 
   return (
     <div className=" mt-6">
-      <h2 className="text-4xl font-bold text-center mb-8">
+      <h2 className="text-xl md:text-4xl font-bold text-center mb-8 text-blue-600">
         <Typewriter
           words={["Top 6 Best Workers"]}
-          loop={1}
+          loop={5}
           cursor={showCursor}
           cursorStyle="|"
           typeSpeed={70}
@@ -26,11 +26,11 @@ const BestWorker = () => {
         />
       </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {topWorkers.map((worker) => (
           <div
             key={worker._id}
-            className="relative bg-gradient-to-br from-white to-blue-50 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 transform hover:-translate-y-1"
+            className="relative bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 border  transform hover:-translate-y-1"
           >
             {/* Profile Section */}
             <div className="flex flex-col items-center">
@@ -45,20 +45,20 @@ const BestWorker = () => {
                 </div>
               </div>
 
-              <h3 className="text-2xl font-semibold mt-3 text-gray-800">
+              <h3 className="text-2xl font-semibold mt-3 ">
                 {worker.name}
               </h3>
 
-              <p className="text-gray-600 mt-1 text-sm flex items-center gap-2">
+              <p className="text-gray-800 font-semibold mt-1 text-sm flex items-center gap-2">
                 <FaEnvelope className="text-blue-500" />
                 {worker.email}
               </p>
 
-              <p className="text-sm text-gray-400 mt-1">Role: {worker.role}</p>
+              <p className="text-sm text-gray-700 mt-1">Role: {worker.role}</p>
             </div>
 
             {/* Bottom Section */}
-            <div className="mt-4 bg-gray-50 rounded-xl p-3 flex justify-between items-center">
+            <div className="mt-4 bg-gray-50 rounded-lg p-3 flex justify-between items-center">
               <div className="flex items-center text-sm text-gray-700 gap-1">
                 <FaMapMarkerAlt className="text-red-500" />
                 <span>{worker.location || "N/A"}</span>

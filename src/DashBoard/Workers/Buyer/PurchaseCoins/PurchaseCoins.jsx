@@ -47,11 +47,11 @@ const PurchaseCoins = () => {
         Purchase Coins
       </h2>
       {purchaseCoin.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {purchaseCoin.map((pkg, index) => (
             <div
               key={index}
-              className="relative p-6 rounded-lg shadow-lg bg-white text-center transform hover:scale-105 transition duration-300"
+              className="relative p-6 rounded-lg shadow-md bg-white text-center transform hover:scale-105 transition duration-300"
               style={{
                 background:
                   "linear-gradient(145deg, #f0e4d7, #ffffff), radial-gradient(circle, rgba(253,216,104,1) 0%, rgba(255,235,175,1) 100%)",
@@ -68,7 +68,7 @@ const PurchaseCoins = () => {
               </p>
               <Link to={`/dashboard/payment/${pkg._id}`}>
                 <button
-                  className="btn px-6 py-3 bg-yellow-500 text-white rounded-lg shadow-lg hover:bg-yellow-600 hover:shadow-xl transition duration-300 transform hover:translate-y-1"
+                  className="btn px-6 py-3 bg-yellow-500 text-white rounded-lg shadow-md hover:bg-yellow-600 hover:shadow-xl transition duration-300 transform hover:translate-y-1"
                 >
                   Purchase Now
                 </button>

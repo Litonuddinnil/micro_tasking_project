@@ -170,14 +170,14 @@ const DashBoard = () => {
 
       {/* Toggle Button */}
       <button
-        className="lg:hidden fixed top-4 left-4 z-50 bg-orange-500 text-white p-2 rounded-full shadow-lg"
+        className="lg:hidden fixed top-4 left-4 z-50 bg-orange-500 text-white p-2 rounded-full shadow-md"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? <HiX /> : <BiMenu />}
       </button>
 
       {/* Main Content */}
-      <div className="flex-1 bg-gray-100 md:p-4">
+      <div className="flex-1 bg-background md:p-4">
         <div className="flex items-center justify-end gap-4">
           <div>
             <p className="text-xl font-semibold text-gray-400">

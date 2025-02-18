@@ -134,7 +134,7 @@ const SignUp = () => {
         </svg>
       </div>
 
-      <div className="relative flex flex-col md:flex-row items-center w-full max-w-5xl bg-background shadow-lg rounded-lg overflow-hidden">
+      <div className="relative flex flex-col md:flex-row items-center w-full max-w-5xl bg-background shadow-md rounded-lg overflow-hidden">
         <div className="p-8 w-full md:w-2/3">
           <h1 className="text-4xl font-bold text-text text-center mb-8">Create an Account</h1>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

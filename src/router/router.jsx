@@ -26,6 +26,8 @@ import WorkerRoutes from "./WorkerRoutes";
 import Loading from "../Pages/Loading/Loading";
 import Profile from "../Pages/Profile/Profile";
 import Contact from "../Pages/Contact/Contact";
+import About from "../Components/About/About";
+import FAQs from "../Pages/FAQs/FAQs";
  
 const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ const router = createBrowserRouter([
       {
         path:"/",
         element:<Home></Home>
+      },
+      {
+        path:"/about",
+        element:<About></About>
+      },
+      {
+        path:"/faqs",
+        element:<FAQs></FAQs>
       },
       {
         path:"/profile",

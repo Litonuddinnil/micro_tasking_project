@@ -44,7 +44,7 @@ const UpdateTask = () => {
   return (
     <div className="w-11/12 mx-auto">
       <h2 className="text-2xl font-bold text-center mb-6">Update Task</h2>
-      <div className="bg-base-200 w-full shadow-lg rounded-lg p-8">
+      <div className="bg-base-200 w-full shadow-md rounded-lg p-8">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Task Title */}
           <div>

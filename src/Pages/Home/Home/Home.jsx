@@ -3,7 +3,8 @@ import Banner from "../Banner/Banner";
 import BestWorker from "../BestWorker/BestWorker";
 import TestimonialSection from "../TestimonialSection/TestimonialSection";
 import HowItWorks from "../HowItWorks/HowItWorks";
-import DownloadAndEarn from "../DownloadAndEarn/DownloadAndEarn";
+import FeaturedTasks from "../FeaturedTaks/FeaturedTasks";
+
 
  
 const Home = () => {
@@ -15,9 +16,9 @@ const Home = () => {
          <Banner></Banner>
          <div className="w-11/12 mx-auto">
          <BestWorker></BestWorker>
-         <TestimonialSection></TestimonialSection>
+         <FeaturedTasks></FeaturedTasks>
          <HowItWorks></HowItWorks>
-         <DownloadAndEarn></DownloadAndEarn>
+         <TestimonialSection></TestimonialSection>
          </div>
         </div>
     );

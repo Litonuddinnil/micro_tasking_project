@@ -84,7 +84,7 @@ const Login = () => {
         </div>
 
         {/* Login Card */}
-        <div className="relative z-10 card bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+        <div className="relative z-10 card bg-white shadow-md rounded-lg p-6 w-full max-w-md">
          
          <h1 className="text-2xl  font-extrabold text-center text-text">
             Login to your account

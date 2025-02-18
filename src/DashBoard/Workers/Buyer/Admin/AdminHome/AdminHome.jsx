@@ -87,22 +87,22 @@ const AdminHome = () => {
       </h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-8">
-        <div className="stat shadow-lg rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
+        <div className="stat shadow-md rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
           <div className="stat-title text-gray-600">Total Workers</div>
           <div className="stat-value text-teal-600">{totalWorkers.length}</div>
         </div>
 
-        <div className="stat shadow-lg rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
+        <div className="stat shadow-md rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
           <div className="stat-title text-gray-600">Total Buyers</div>
           <div className="stat-value text-teal-600">{totalBuyers.length}</div>
         </div>
 
-        <div className="stat shadow-lg rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
+        <div className="stat shadow-md rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
           <div className="stat-title text-gray-600">Total Available Coins</div>
           <div className="stat-value text-teal-600">{totalCoins}</div>
         </div>
 
-        <div className="stat shadow-lg rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
+        <div className="stat shadow-md rounded-lg p-6 bg-gradient-to-br from-white to-gray-100">
           <div className="stat-title text-gray-600">Total Payment</div>
           <div className="stat-value text-teal-600 flex items-center">
             <FaBitcoin className="mr-2" /> {totalPayments}
@@ -110,7 +110,7 @@ const AdminHome = () => {
         </div>
       </div>
 
-      <div className="p-6 bg-white shadow-lg rounded-lg">
+      <div className="p-6 bg-white shadow-md rounded-lg">
         <h1 className="text-xl md:text-2xl text-center font-bold text-teal-800 mb-6">
           Pending Withdrawal Requests
         </h1>

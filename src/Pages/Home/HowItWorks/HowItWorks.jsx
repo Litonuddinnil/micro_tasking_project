@@ -2,8 +2,11 @@
 import { FaBriefcase, FaUserCircle } from "react-icons/fa";
 import { ImUsers } from "react-icons/im";
 import { FaRupeeSign, FaBuilding, FaLayerGroup } from "react-icons/fa";
+import { Typewriter } from "react-simple-typewriter";
+import { useState } from "react";
 
 const HowItWorks = () => {
+    const [showCursor, setShowCursor] = useState(true);
   const items = [
     {
       icon: <FaBriefcase className="text-primary" />,
@@ -61,18 +64,29 @@ const HowItWorks = () => {
   ];
 
   return (
-    <div className="container mx-auto py-10">
-      <h2 className="text-center text-3xl font-bold mb-8">How It Works</h2>
+    <div className="mt-6">
+        <h2 className="text-xl md:text-4xl font-bold text-center mb-8 text-blue-600">
+              <Typewriter
+                words={["How It Works"]}
+                loop={5}
+                cursor={showCursor}
+                cursorStyle="|"
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+                onLoopDone={() => setShowCursor(false)}
+              />
+            </h2> 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {items.map((item, index) => (
           <div
             key={index}
-            className="card shadow-lg border rounded-lg p-5 text-center hover:shadow-xl transition"
+            className="card bg-white shadow-md border rounded-lg p-5 text-center hover:shadow-xl transition"
           >
             <div className="text-5xl mb-4 flex items-center justify-center">{item.icon}</div>
-            <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-            <p className="text-gray-600 mb-4">{item.subtitle}</p>
-            <ul className="text-left text-gray-800 space-y-2">
+            <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+            <p className="text-gray-700 font-semibold mb-4">{item.subtitle}</p>
+            <ul className="text-left space-y-2">
               {item.points.map((point, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-primary">•</span>

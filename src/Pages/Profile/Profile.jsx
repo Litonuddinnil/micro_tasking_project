@@ -13,10 +13,10 @@ const Profile = () => {
         <h1 className="text-3xl font-bold text-sky-600 mb-6 md:ml-8 text-center">
           My Profile Dashboard
         </h1>
-        <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+        <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
           <div className="flex-shrink-0">
             <img
-              className="w-42 h-42 md:w-64 md:h-64 rounded-full object-cover shadow-lg"
+              className="w-42 h-42 md:w-64 md:h-64 rounded-full object-cover shadow-md"
               src={userData?.photoURL || "https://via.placeholder.com/150"}
               alt="User Profile"
             />
