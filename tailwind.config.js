@@ -20,6 +20,16 @@ export default {
         secondary: "#ebb784",
         accent: "#e5cf5f",
       },
+      keyframes: {
+        wave: {
+          '0%': { transform: 'translateX(30)' },
+          '50%': { transform: 'translateX(-20px)' },
+          '100%': { transform: 'translateX(60)' },
+        },
+      },
+      animation: {
+        wave: 'wave 5s ease-in-out infinite',
+      },
     },
   },
   plugins: [

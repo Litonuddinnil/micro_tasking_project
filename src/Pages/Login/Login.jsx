@@ -5,10 +5,11 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { Helmet } from "react-helmet-async";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 import SocialLogin from "../../Components/SocialLogin/SocialLogin";
+import { CiLogout } from "react-icons/ci";
 
 const Login = () => {
   const [isDisabled, setIsDisabled] = useState(true);
@@ -30,14 +31,14 @@ const Login = () => {
 
     try {
       const result = await signInUser(email, password);
-    if(result){
+      if (result) {
         Swal.fire({
-            title: "Successfully Logged In!",
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-          navigate(from, { replace: true });
-    }
+          title: "Successfully Logged In!",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+        navigate(from, { replace: true });
+      }
     } catch (error) {
       Swal.fire({
         title: "Error!",
@@ -65,13 +66,39 @@ const Login = () => {
         <title>Micro Tasking Platform | Login</title>
       </Helmet>
 
-      <div className="hero bg-gradient-to-r from-indigo-200 via-purple-200 to-pink-200 min-h-screen flex items-center justify-center">
-        <div className="card bg-white shadow-lg rounded-md p-5 w-full max-w-md">
-          <h1 className="text-2xl font-bold text-center text-indigo-600 mb-4">
-            Login to Your Account
-          </h1>
+      <div className="relative min-h-screen w-full flex items-center justify-center bg-background overflow-hidden">
+        {/* Background Animation */}
+        <div className="absolute inset-0 animate-wave">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            className="w-full h-full"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#4f46e5"
+              fillOpacity="0.3"
+              d="M0,64L40,64C80,64,160,64,240,90.7C320,117,400,171,480,186.7C560,203,640,181,720,176C800,171,880,181,960,181.3C1040,181,1120,171,1200,165.3C1280,160,1360,160,1400,160L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
+            ></path>
+          </svg>
+        </div>
 
-          <form onSubmit={handleLogin} className="space-y-4">
+        {/* Login Card */}
+        <div className="relative z-10 card bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
+         
+         <h1 className="text-2xl  font-extrabold text-center text-text">
+            Login to your account
+          </h1>
+          <Link to={"/"} className="absolute top-0 right-4 "><CiLogout className="text-red-600 text-3xl font-extrabold" /></Link>
+     
+          <p className="text-center text-md mt-3">
+            Don&apos;t have an account?{" "}
+            <a href="/register" className="text-blue-600 font-medium underline">
+              Sign Up Here
+            </a>
+          </p>
+
+          <form onSubmit={handleLogin} className="space-y-4 mt-4">
             <div className="form-control">
               <label className="text-sm font-medium mb-1">Email</label>
               <input
@@ -92,10 +119,7 @@ const Login = () => {
                 className="input input-bordered input-sm w-full"
                 required
               />
-              <a
-                href="#"
-                className="text-xs text-primary mt-1 hover:underline"
-              >
+              <a href="#" className="text-xs text-primary mt-1 hover:underline">
                 Forgot password?
               </a>
             </div>
@@ -126,24 +150,16 @@ const Login = () => {
               <button
                 type="submit"
                 disabled={isDisabled}
-                className="btn btn-primary btn-sm w-full disabled:opacity-50"
+                className="btn btn-primary text-white btn-sm w-full disabled:opacity-50"
               >
                 Login
               </button>
             </div>
           </form>
 
-          <SocialLogin />
-
-          <p className="text-center text-xs text-gray-600 mt-3">
-            Don not have an account?{" "}
-            <a
-              href="/register"
-              className="text-primary font-medium hover:underline"
-            >
-              Sign up here
-            </a>
-          </p>
+          <div className="mt-4">
+            <SocialLogin />
+          </div>
         </div>
       </div>
     </>

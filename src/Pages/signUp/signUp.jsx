@@ -7,26 +7,65 @@ import Swal from "sweetalert2";
 import signUPImg from "../../assets/signUp.json";
 import Lottie from "lottie-react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useEffect, useState } from "react";
 
-// Image Hosting Key
 const Image_Hosting_Key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const Image_Hosting_Api = `https://api.imgbb.com/1/upload?key=${Image_Hosting_Key}`;
+const GEOCODING_API_KEY = import.meta.env.VITE_API_KEY_MAPS;
+const REVERSE_GEOCODING_URL = `https://api.bigdatacloud.net/data/reverse-geocode-client`; // Free reverse geocoding API
 
 const SignUp = () => {
   const axiosPublic = useAxiosPublic();
+  const [location, setLocation] = useState("");
+  const [locationLoading, setLocationLoading] = useState(true);
   const navigate = useNavigate();
   const { createUser, userUpdateProfile } = useAuth();
+
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  // Form submission handler
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await fetch(
+              `${REVERSE_GEOCODING_URL}?latitude=${latitude}&longitude=${longitude}&localityLanguage=en`
+            );
+            const data = await response.json();
+            const locationName = `${data.city}, ${data.countryName}`;
+
+            setLocation(locationName);
+            setValue("location", locationName);
+          } catch (error) {
+            console.error("Error fetching location name:", error);
+            setLocation("Unable to fetch location");
+            setValue("location", "Unable to fetch location");
+          }
+          setLocationLoading(false);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          setLocation("Unable to retrieve location");
+          setValue("location", "Unable to retrieve location");
+          setLocationLoading(false);
+        }
+      );
+    } else {
+      setLocation("Geolocation is not supported");
+      setValue("location", "Geolocation is not supported");
+      setLocationLoading(false);
+    }
+  }, [setValue]);
+
   const onSubmit = async (data) => {
     try {
-      // Handle file upload (task image)
       let photoURL = "";
       if (data.task_image?.[0]) {
         const imageFile = new FormData();
@@ -41,244 +80,99 @@ const SignUp = () => {
         }
       }
 
-      // Password confirmation check
       if (data.password !== data.confirmPassword) {
-        Swal.fire({
-          title: "Error",
-          text: "Passwords do not match!",
-          icon: "error",
-          confirmButtonText: "Ok",
-        });
+        Swal.fire({ title: "Error", text: "Passwords do not match!", icon: "error" });
         return;
       }
 
-      // Create User
       const result = await createUser(data.email, data.password);
-      const loggedUser = result.user;
-       console.log(loggedUser);
-      // Update Profile
       await userUpdateProfile(data.name, photoURL);
 
-      // Prepare user payload
       const coinAmount = data.role === "Worker" ? 10 : 50;
+      const ratingWorker = 3;
+
       const userPayload = {
         name: data.name,
         email: data.email,
         photoURL: photoURL,
         role: data.role,
         coins: coinAmount,
+        location: data.location,
+        rating: ratingWorker,
       };
 
-      // Save user to the database
       const res = await axiosPublic.post("/users", userPayload);
       if (res.data.insertedId) {
-        Swal.fire({
-          title: "Account Created Successfully!",
-          icon: "success",
-          confirmButtonText: "Ok",
-        });
+        Swal.fire({ title: "Account Created Successfully!", icon: "success" });
         reset();
         navigate("/dashboard");
       }
     } catch (err) {
-      Swal.fire({
-        title: "Error",
-        text: err.message,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-      console.error("Error:", err.message);
+      Swal.fire({ title: "Error", text: err.message, icon: "error" });
     }
   };
 
   return (
     <>
-      <Helmet>
-        <title>Micro Tasking Platform | Sign Up</title>
-      </Helmet>
-      <div
-        className="min-h-screen flex items-center justify-center bg-gray-100"
-        style={{
-          backgroundImage: `url('https://i.ibb.co/qdvwJSz/registerimg.webp')`,
-        }}
-      >
-        <div className="flex flex-col md:flex-row items-center w-full max-w-5xl">
-          {/* Form Container */}
-          <div className="card bg-white shadow-lg rounded-lg p-8 w-full md:w-2/3">
-            <h1 className="text-4xl font-bold text-center text-blue-600 mb-6">
-              Create an Account
-            </h1>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              {/* Full Name */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Full Name</span>
-                </label>
-                <input
-                  {...register("name", {
-                    required: "Name is required",
-                    pattern: {
-                      value: /^[A-Za-z\s]+$/,
-                      message: "Name can only contain letters and spaces",
-                    },
-                  })}
-                  type="text"
-                  placeholder="Enter your full name"
-                  className="input input-bordered input-primary"
-                />
-                {errors.name && (
-                  <span className="text-red-500 text-sm">
-                    {errors.name.message}
-                  </span>
-                )}
-              </div>
+    <Helmet>
+      <title>Micro Tasking Platform | Sign Up</title>
+    </Helmet>
+    <div className="relative min-h-screen flex items-center justify-center bg-background bg-cover bg-center">
+      {/* Background Animation */}
+      <div className="absolute inset-0 animate-wave">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1440 320"
+          className="w-full h-full"
+          preserveAspectRatio="none"
+        >
+          <path
+            fill="#4f46e5"
+            fillOpacity="0.3"
+            d="M0,64L40,64C80,64,160,64,240,90.7C320,117,400,171,480,186.7C560,203,640,181,720,176C800,171,880,181,960,181.3C1040,181,1120,171,1200,165.3C1280,160,1360,160,1400,160L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
 
-              {/* Photo URL and Task Image */} 
-                <div>
-                  <label className="label">
-                    <span className="label-text font-medium">Task Image*</span>
-                  </label>
-                  <input
-                    {...register("task_image", {
-                      required: "Task image is required",
-                    })}
-                    type="file"
-                    className={`file-input w-full max-w-xs ${
-                      errors.task_image ? "border-red-500" : ""
-                    }`}
-                  />
-                  {errors.task_image && (
-                    <span className="text-red-500 text-sm">
-                      {errors.task_image.message}
-                    </span>
-                  )}
-                </div> 
-              {/* Email */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Email</span>
-                </label>
-                <input
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  type="email"
-                  placeholder="Enter your email"
-                  className="input input-bordered input-primary"
-                />
-                {errors.email && (
-                  <span className="text-red-500 text-sm">
-                    {errors.email.message}
-                  </span>
-                )}
-              </div>
+      <div className="relative flex flex-col md:flex-row items-center w-full max-w-5xl bg-background shadow-lg rounded-lg overflow-hidden">
+        <div className="p-8 w-full md:w-2/3">
+          <h1 className="text-4xl font-bold text-text text-center mb-8">Create an Account</h1>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <input {...register("name", { required: "Name is required" })} placeholder="Full Name" className="input input-bordered w-full" />
+            <input {...register("email", { required: "Email is required" })} placeholder="Email" className="input input-bordered w-full" />
 
-              {/* Role Selection */}
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text font-medium">Select Role</span>
-                </label>
-                <select
-                  {...register("role", { required: "Role selection is required" })}
-                  className="select select-bordered select-primary"
-                >
-                  <option value="">Choose your role</option>
-                  <option value="Worker">Worker</option>
-                  <option value="Buyer">Buyer</option>
-                </select>
-                {errors.role && (
-                  <span className="text-red-500 text-sm">
-                    {errors.role.message}
-                  </span>
-                )}
-              </div>
-
-              {/* Password and Confirm Password */}
-              <div className="md:flex gap-8 items-center">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text font-medium">Password</span>
-                  </label>
-                  <input
-                    {...register("password", {
-                      required: "Password is required",
-                      minLength: {
-                        value: 6,
-                        message: "Password must be at least 6 characters",
-                      },
-                      maxLength: {
-                        value: 10,
-                        message: "Password must not exceed 10 characters",
-                      },
-                      pattern: {
-                        value:
-                          /^(?=.*?[a-z])(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$/,
-                        message:
-                          "Password must include one lowercase, one uppercase, one digit, and one special character",
-                      },
-                    })}
-                    type="password"
-                    placeholder="Enter your password"
-                    className="input input-bordered input-primary"
-                  />
-                  {errors.password && (
-                    <span className="text-red-500 text-sm">
-                      {errors.password.message}
-                    </span>
-                  )}
-                </div>
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text font-medium">Confirm Password</span>
-                  </label>
-                  <input
-                    {...register("confirmPassword", {
-                      required: "Please confirm your password",
-                    })}
-                    type="password"
-                    placeholder="Confirm your password"
-                    className="input input-bordered input-primary"
-                  />
-                  {errors.confirmPassword && (
-                    <span className="text-red-500 text-sm">
-                      {errors.confirmPassword.message}
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Submit Button */}
-              <div className="form-control mt-6">
-                <button
-                  type="submit"
-                  className="btn btn-primary w-full hover:bg-primary-focus"
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
-          </div>
-
-          {/* Animation/Image Section */}
-          <div className="hidden md:block md:w-1/3 bg-gray-100 ml-2 my-8">
-            <Lottie animationData={signUPImg} />
-            <div className="mt-4">
-              <SocialLogin />
+            {/* Location Field */}
+            <div className="relative">
+              <input
+                {...register("location", { required: "Location is required" })}
+                value={location}
+                readOnly
+                disabled={locationLoading}
+                placeholder={locationLoading ? "Fetching location..." : location}
+                className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
+              />
+              {locationLoading && <span className="absolute right-3 top-3 text-gray-500 text-sm">Fetching...</span>}
             </div>
-            <p className="text-center mt-4 text-gray-950 font-bold p-6">
-              Already have an account?{" "}
-              <a href="/login" className="text-primary font-bold link-hover">
-                Log in here
-              </a>
-            </p>
-          </div>
+
+            <input {...register("task_image", { required: true })} type="file" className="file-input w-full" />
+            <select {...register("role", { required: true })} className="select select-bordered w-full">
+              <option value="">Choose Role</option>
+              <option value="Worker">Worker</option>
+              <option value="Buyer">Buyer</option>
+            </select>
+            <input {...register("password", { required: true })} type="password" placeholder="Password" className="input input-bordered w-full" />
+            <input {...register("confirmPassword", { required: true })} type="password" placeholder="Confirm Password" className="input input-bordered w-full" />
+            <button type="submit" className="btn btn-primary text-white w-full">Sign Up</button>
+          </form>
+        </div>
+        <div className="sm:hidden md:block w-1/3 bg-background flex flex-col items-center justify-center p-6">
+          <Lottie animationData={signUPImg} className="w-48 h-48" />
+          <SocialLogin />
+          <p className="mt-4">Already have an account? <a href="/login" className="text-blue-500">Log in here</a></p>
         </div>
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

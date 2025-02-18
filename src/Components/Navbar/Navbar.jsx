@@ -39,7 +39,7 @@ const Navbar = () => {
             <span className="flex items-center gap-1 text-yellow-400 text-lg font-semibold">{userData?.coins || 0} <RiCoinsFill /></span>
             <div className="dropdown dropdown-hover relative">
               <label tabIndex={0} className="cursor-pointer hover:text-blue-400">Profile</label>
-              <ul tabIndex={0} className="dropdown-content menu p-2 shadow  rounded-lg w-40 absolute">
+              <ul tabIndex={0} className={`dropdown-content menu p-2 ${theme === "corporate"? "bg-white" : "bg-[#121212]"}  rounded-lg w-40 absolute shadow-md`}>
                 <li><Link to="/profile" className="hover:text-blue-600">My Profile</Link></li>
                 <li><button onClick={handleLogOut} className="hover:text-blue-600">Logout</button></li>
               </ul>
