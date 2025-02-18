@@ -43,7 +43,7 @@ const PurchaseCoins = () => {
         backgroundImage: `url('https://www.transparenttextures.com/patterns/gplay.png')`,
       }}
     >
-      <h2 className="text-4xl font-bold text-center text-black mb-12 drop-shadow-md">
+      <h2 className="text-4xl font-bold text-center  mb-12 drop-shadow-md">
         Purchase Coins
       </h2>
       {purchaseCoin.length > 0 ? (

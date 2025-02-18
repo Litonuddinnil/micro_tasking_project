@@ -139,7 +139,7 @@ const DashBoard = () => {
 
       {/* Sidebar */}
       <div
-        className={`lg:w-64 bg-gradient-to-r from-blue-100 via-purple-200 to-pink-100 text-black ${
+        className={`lg:w-64 bg-gradient-to-r from-blue-100 via-purple-200 to-pink-100  ${
           isSidebarOpen ? "block" : "hidden"
         } lg:block`}
       >

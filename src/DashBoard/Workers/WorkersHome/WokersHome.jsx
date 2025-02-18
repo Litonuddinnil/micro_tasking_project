@@ -25,6 +25,7 @@ const WorkersHome = () => {
   const totalSubmission = submissions.length;
   const pendingSubmission = submissions.filter((stat) => stat.status === "pending").length;
   const approvedSubmissions = submissions.filter((stat) => stat.status === "approve");
+  console.log(approvedSubmissions);
   const payableAmount = approvedSubmissions.reduce(
     (acc, curr) => acc + (curr.payable_amount || 0),
     0

@@ -11,7 +11,7 @@ const Payment = () => {
   return (
     <div>
       {/* Section Title */} 
-      <h1 className='text-4xl font-bold text-center text-black mb-12 drop-shadow-md'>PayMent Gateway</h1>
+      <h1 className='text-4xl font-bold text-center  mb-12 drop-shadow-md'>PayMent Gateway</h1>
       
       {/* Stripe Elements Wrapper */}
       <Elements stripe={stripePromise}>
