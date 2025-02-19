@@ -86,7 +86,7 @@ const HowItWorks = () => {
             <div className="text-5xl mb-4 flex items-center justify-center">{item.icon}</div>
             <h3 className="text-xl font-bold mb-2">{item.title}</h3>
             <p className="text-gray-700 font-semibold mb-4">{item.subtitle}</p>
-            <ul className="text-left space-y-2">
+            <ul className="text-left text-text space-y-2">
               {item.points.map((point, i) => (
                 <li key={i} className="flex items-start gap-2">
                   <span className="text-primary">•</span>

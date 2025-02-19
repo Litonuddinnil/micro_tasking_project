@@ -91,7 +91,7 @@ const Login = () => {
           </h1>
           <Link to={"/"} className="absolute top-0 right-4 "><CiLogout className="text-red-600 text-3xl font-extrabold" /></Link>
      
-          <p className="text-center text-md mt-3">
+          <p className="text-center text-md text-text mt-3">
             Don&apos;t have an account?{" "}
             <a href="/register" className="text-blue-600 font-medium underline">
               Sign Up Here

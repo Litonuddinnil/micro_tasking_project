@@ -33,7 +33,7 @@ const SocialLogin = () => {
     return (
         <div className='flex items-center justify-center  flex-col'>
             <div className='divider'>OR</div>
-            <button onClick={handlerGoogleLogin} className='btn btn-outline'>
+            <button onClick={handlerGoogleLogin} className='btn btn-outline text-text'>
             <FcGoogle /> SigUp or Login with Google
             </button>
         </div>

@@ -70,14 +70,15 @@ const Navbar = () => {
               <li><span className="flex items-center gap-1 text-yellow-400 text-lg font-semibold">{userData?.coins || 0} <RiCoinsFill /></span></li>
               <li><Link to="/profile" className="hover:text-blue-600">My Profile</Link></li>
               <li><button onClick={handleLogOut} className="hover:text-blue-600">Logout</button></li>
-              <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Litonuddinnil" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-whitehover:text-blue-400">Join as Developer</a></li>
-              <li><button onClick={toggleTheme} className="btn bg-primary flex items-center">{theme === "corporate" ? <FaMoon /> : <FaSun />}</button></li>
+              <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Litonuddinnil" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm hover:text-blue-400">Join as Developer</a></li>
+              <li><button onClick={toggleTheme} className="btn btn-sm mt-4 bg-primary flex items-center">{theme === "corporate" ? <FaMoon /> : <FaSun />}</button></li>
             </>
           ) : (
             <>
               <li><Link to="/login" className="hover:text-blue-600">Login</Link></li>
               <li><Link to="/register" className="hover:text-blue-600">Register</Link></li>
-              <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Litonuddinnil" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm text-white hover:text-blue-400">Join as Developer</a></li>
+              <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-Litonuddinnil" target="_blank" rel="noopener noreferrer" className="btn btn-outline btn-sm  hover:text-blue-400">Join as Developer</a></li>
+              <button onClick={toggleTheme} className="btn btn-sm mt-2 bg-primary flex items-center">{theme === "corporate" ? <FaMoon /> : <FaSun />}</button>
             </>
           )}
         </ul>

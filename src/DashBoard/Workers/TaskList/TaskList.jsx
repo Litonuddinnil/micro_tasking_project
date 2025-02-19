@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"; 
 import useBuyer from "../../../hooks/useBuyer";
 import { Helmet } from "react-helmet";
-
+import { FaSort } from "react-icons/fa6";
 const TaskList = () => { 
   const [Tasks] = useBuyer(); 
   // console.log(Tasks);
@@ -10,7 +10,10 @@ const TaskList = () => {
       <Helmet>
       <title>Micro Platform | TaskList</title>
       </Helmet>
+      <div className="flex items-center justify-between">
       <h2 className="text-3xl font-bold mb-4">Available Tasks</h2>
+      <button className="btn btn-outline text-accent "><FaSort /></button>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {Tasks.map((task) => (
          task.required_workers > 0 &&

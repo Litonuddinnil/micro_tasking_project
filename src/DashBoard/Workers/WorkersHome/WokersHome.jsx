@@ -72,16 +72,16 @@ const WorkersHome = () => {
       <h1 className="text-2xl font-bold mb-4  text-center ">Worker Stats Dashboard</h1>
       <div className="flex flex-col md:flex-row items-center md:items-start gap-6 h-96">
         {/* Statistics Section */}
-        <div className="bg-gray-100 shadow-md p-6 rounded-lg flex-1 text-center md:text-left">
-          <h2 className="text-lg font-semibold text-gray-700 mb-4 ">Your Stats</h2>
-          <p className="text-gray-600 text-xl font-medium">
+        <div className=" shadow-md p-6 rounded-lg flex-1 text-center md:text-left">
+          <h2 className="text-lg font-semibold text-gray-500 mb-4 ">Your Stats</h2>
+          <p className="text-gray-500 text-xl font-medium">
             Total Submissions: <span className="text-primary font-bold">{totalSubmission}</span>
           </p>
-          <p className="text-gray-600 text-xl font-medium">
+          <p className="text-gray-500 text-xl font-medium">
             Pending Submissions:{" "}
             <span className="text-green-500 font-bold">{pendingSubmission}</span>
           </p>
-          <p className="text-gray-600 text-xl font-medium">
+          <p className="text-gray-500 text-xl font-medium">
             Total Payable Amount:{" "}
             <span className="text-yellow-500 font-bold">${payableAmount.toFixed(2)}</span>
           </p>
@@ -119,13 +119,13 @@ const WorkersHome = () => {
       {/* //table for approvedSubmission */}
        {/* Approved Submissions Table */}
        <div className="mt-10">
-        <h2 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+        <h2 className="text-lg font-semibold text-gray-500 mb-4 text-center">
           Approved Submissions
         </h2>
         {approvedSubmissions.length > 0 ? (
           <div className="overflow-x-auto shadow-md rounded-lg">
             <table className="table-auto w-full text-sm text-left text-gray-500">
-              <thead className="text-xs uppercase bg-gray-100 text-gray-700">
+              <thead className="text-xs uppercase text-gray-500">
                 <tr>
                   <th scope="col" className="px-6 py-3">Task Title</th>
                   <th scope="col" className="px-6 py-3">Payable Amount</th>
@@ -137,7 +137,7 @@ const WorkersHome = () => {
                 {approvedSubmissions.map((submission, index) => (
                   <tr
                     key={index}
-                    className={`border-b ${index % 2 === 0 ? "bg-gray-50" : "bg-white"}`}
+                    className={`border-b ${index % 2 === 0 ? "bg-gray-500" : "bg-background"}`}
                   >
                     <td className="px-6 py-4 font-medium text-gray-900">
                       {submission.task_title}

@@ -38,9 +38,9 @@ const TestimonialSection = () => {
   ];
 
   return (
-    <div className="mt-6 ">
+    <div className="mt-6 mb-12">
       <div className="max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold  mb-6">What Our Users Say</h2>
+        <h2 className="text-xl md:text-4xl font-bold  mb-6">What Our Users Say</h2>
         
         {/* Swiper Slider */}
         <Swiper

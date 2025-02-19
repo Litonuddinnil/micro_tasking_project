@@ -3,34 +3,31 @@ import World from "../../../Imag/world.json";
 
 const DownloadAndEarn = () => {
   return (
-    <div className="relative mb-12 p-8 md:p-12 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-3xl shadow-xl overflow-hidden flex flex-col md:flex-row items-center gap-8">
-      <div className="absolute inset-0 opacity-20">
-        <Lottie animationData={World} loop autoplay className="w-full h-full" />
-      </div>
-
-      <div className="relative z-10 md:w-1/2 w-full">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
-          Download & Install Appy Now
-        </h1>
-        <p className="text-base md:text-lg leading-relaxed">
-          Work Up Job Site is the ultimate platform for micro-jobs and freelance
-          services, connecting freelancers and businesses worldwide. Freelancers
-          can earn money online by completing remote tasks, showcasing their
-          skills, and working with global clients. Businesses can easily find and
-          hire talented contractors to complete projects efficiently. With
-          advanced filters, seamless communication, and secure payments, Work Up
-          Job Site ensures a smooth experience for everyone. Join the world’s
-          leading micro-job marketplace today!
-        </p>
-        <button className="mt-6 bg-white text-indigo-600 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-indigo-50 transition">
-          Download Now
-        </button>
-      </div>
-
-      <div className="relative z-10 md:w-1/2 w-full flex justify-center">
+    <div className="relative mb-12 p-8 md:p-12   rounded-3xl shadow-lg flex flex-col md:flex-row items-center gap-6">
+      <div className="absolute inset-0 opacity-90">
         <div className="w-60 h-60 md:w-80 md:h-80">
           <Lottie animationData={World} loop autoplay />
         </div>
+      </div>
+
+      <div className="relative md:w-1/2 w-full">
+        <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight">
+          Empowering You to Earn More, Anytime, Anywhere!
+        </h1>
+        <p className="md:text-lg leading-relaxed ">
+          Our Micro Tasking and Earning Platform connects individuals and
+          businesses through simple, flexible work opportunities. Whether you're
+          looking to earn extra income by completing small tasks or seeking
+          skilled workers to get your jobs done, our platform is built to suit
+          your needs. With dedicated features for Workers, Buyers, and Admins,
+          we ensure a smooth experience for task management, secure payments,
+          and seamless collaboration. Join a thriving community and start
+          unlocking your earning potential today!
+        </p>
+      </div>
+
+      <div className="relative   md:w-1/2 w-full flex justify-center">
+        <Lottie animationData={World} loop autoplay className="w-full h-full" />
       </div>
     </div>
   );

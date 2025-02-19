@@ -6,9 +6,9 @@ The Micro Tasking and Earning Platform is a web-based platform designed to conne
 
 🔑 Admin Access:
 
-Admin Email: mdliton344@gmail.com
+Admin Email: mdnil501@gmail.com
 
-Password:Liton123@
+Password:Liton12@#
 
 ## ✨ Key Features
 Multi-Role Support

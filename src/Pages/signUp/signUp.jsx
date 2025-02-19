@@ -149,7 +149,7 @@ const SignUp = () => {
                 readOnly
                 disabled={locationLoading}
                 placeholder={locationLoading ? "Fetching location..." : location}
-                className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
+                className="input input-bordered w-full  cursor-not-allowed"
               />
               {locationLoading && <span className="absolute right-3 top-3 text-gray-500 text-sm">Fetching...</span>}
             </div>
