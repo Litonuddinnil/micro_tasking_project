@@ -14,7 +14,7 @@ import { CiLogout } from "react-icons/ci";
 const Login = () => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [captchaMessage, setCaptchaMessage] = useState("");
-  const { signInUser } = useAuth();
+  const { signInUser} = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashboard";
@@ -22,6 +22,10 @@ const Login = () => {
   useEffect(() => {
     loadCaptchaEnginge(6); // Load a 6-character captcha
   }, []);
+  const handlerNavigate = () =>{
+    navigate("/");
+    window.location.reload();
+  }
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -89,8 +93,7 @@ const Login = () => {
          <h1 className="text-2xl  font-extrabold text-center text-text">
             Login to your account
           </h1>
-          <Link to={"/"} className="absolute top-0 right-4 "><CiLogout className="text-red-600 text-3xl font-extrabold" /></Link>
-     
+          <button onClick={handlerNavigate} className="absolute top-0 right-4"><CiLogout className="text-red-600 text-3xl font-extrabold" /></button> 
           <p className="text-center text-md text-text mt-3">
             Don&apos;t have an account?{" "}
             <a href="/register" className="text-blue-600 font-medium underline">
