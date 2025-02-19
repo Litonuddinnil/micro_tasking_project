@@ -152,7 +152,7 @@ const DashBoard = () => {
             />
           </a>
         </div>
-        <ul className="menu p-4 uppercase">
+        <ul className="menu p-4 text-text uppercase">
           {renderRoleBasedNav()}
           <div className="divider"></div>
           <li>
